@@ -65,3 +65,53 @@
 <p style="text-align: center; font-style: italic; margin-top: 10px;">
   <strong>Figure 19:</strong> Effective rank of the update matrix of different methods on LLaMA-2-7B.
 </p>
+
+|Rank|q_proj|k_proj|v_proj|up_proj|down_proj|
+|-|-|-|-|-|-|
+|**LIFT (Rank = 128)**|2469.63|2398.41|2811.06|3801.13|3943.63|
+|Full FT|3952.63|3971.16|3977.38|4096.00|4096.000
+|LoRA (Rank = 16)|16.00|16.00|16.00|16.00|16.00|
+|LoRA (Rank = 128)|128.00|128.00|128.00|128.00|127.31|
+
+*Table 9: The computed rank of weight update matrix for different method (we use 10x default threshold in computing the rank).*
+
+|Effective Rank|q_proj|k_proj|v_proj|up_proj|down_proj|
+|-|-|-|-|-|-|
+|**LIFT (Rank = 128)**|1651.72|1565.29|1877.99|3012.28|3013.04|
+|Full FT|3126.29|3121.36|3159.01|3787.20|3803.60|
+|LoRA (Rank = 128)|111.72|113.84|112.90|126.30|120.84|
+|PiSSA (Rank = 128)|649.03|659.42|702.99|874.21|855.92|
+|HiRA (Rank = 128)|2356.04|2401.97|3075.19|3759.56|3689.39|
+|HiRA (Rank = 512)|2518.85|2576.89|3079.04|3772.07|3690.66|
+
+*Table 10: The effective rank of weight update matrix for different method.*
+
+<div style="margin-top: px; text-align: center;">
+  <img src="./figures/rank/7B_q_proj_diff_c.png" alt="Legend" width="400"/>
+</div>
+
+<p style="text-align: center; font-style: italic; margin-top: 10px;">
+  <strong>Figure 20:</strong> Rank of update matrices under varying threshold-raising factors (LoRA rank = 16). The default threshold results in computed rank larger than target rank. As we increase the threshold-raising factor, the computed rank aligns with the target rank.
+</p>
+
+<div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+  <img src="./figures/rank/rank_10_7B_q_proj_no_y.png" alt="Figure 1" style="width: 32%;"/>
+  <img src="./figures/rank/rank_10_7B_k_proj_no_y.png" alt="Figure 2" style="width: 32%;"/>
+  <img src="./figures/rank/rank_10_7B_v_proj_no_y.png" alt="Figure 3" style="width: 32%;"/>
+</div>
+
+<!-- Row 2: 2 figures -->
+<div style="display: flex; justify-content: space-around; margin-bottom: 10px;">
+  <img src="./figures/rank/rank_10_7B_up_proj_no_y.png" alt="Figure 4" style="width: 32%;"/>
+  <img src="./figures/rank/rank_10_7B_down_proj_no_y.png" alt="Figure 5" style="width: 32%;"/>
+</div>
+
+<!-- Row 3: Wide legend -->
+<div style="text-align: center; margin-top: 10px;">
+  <img src="./figures/rank/rank_legend.png" alt="Legend" style="width: 90%; max-width: 800px;"/>
+</div>
+
+<!-- Optional unified caption -->
+<p style="text-align: center; font-style: italic; margin-top: 10px;">
+  <strong>Figure 21:</strong> Rank of the update matrix of different methods on LLaMA-2-7B with 10x default threshold.
+</p>
